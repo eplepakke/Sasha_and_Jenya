@@ -1,3 +1,6 @@
+import pygame
+
+
 def start_screen():
     intro_text = ["", "",
                   "",
@@ -26,4 +29,3 @@ def start_screen():
                 return
         pygame.display.flip()
         clock.tick(FPS)
-       

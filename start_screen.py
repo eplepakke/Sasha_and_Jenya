@@ -1,4 +1,13 @@
 import pygame
+from load_image import load_image
+
+WIN_WIDTH = 800
+WIN_HEIGHT = 600
+SIZE = (WIN_WIDTH, WIN_HEIGHT)
+FPS = 50
+pygame.init()
+screen = pygame.display.set_mode(SIZE)
+clock = pygame.time.Clock()
 
 
 def start_screen():
@@ -24,7 +33,6 @@ def start_screen():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                sys.exit()
             elif event.type == pygame.KEYDOWN or event.type == pygame.MOUSEBUTTONDOWN:
                 return
         pygame.display.flip()

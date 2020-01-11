@@ -1,4 +1,11 @@
 import os
+import pygame
+
+WIN_WIDTH = 800
+WIN_HEIGHT = 600
+SIZE = (WIN_WIDTH, WIN_HEIGHT)
+pygame.init()
+screen = pygame.display.set_mode(SIZE)
 
 
 def load_image(name, colorkey=None):

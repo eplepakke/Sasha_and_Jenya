@@ -1,4 +1,5 @@
 import pygame
+import os
 from level_loading import load_level
 from start_screen import start_screen
 
@@ -16,11 +17,11 @@ def main():
     pygame.display.set_caption("Sasha and Jenya")
     bg = pygame.Surface((WIN_WIDTH, WIN_HEIGHT))
     bg.fill(BACKGROUND_COLOR)
-    running = True
-    while running:
+    while True:
         for e in pygame.event.get():
             if e.type == pygame.QUIT:
-                running = False
+                pygame.quit()
+                return
         screen.blit(bg, (0, 0))
         pygame.display.update()
         clock.tick(FPS)

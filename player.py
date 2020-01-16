@@ -1,7 +1,7 @@
 import pygame
 
 MOVE_SPEED = 7
-WIDTH = 22
+WIDTH = 24
 HEIGHT = 32
 COLOR = pygame.Color('green')
 JUMP_POWER = 10

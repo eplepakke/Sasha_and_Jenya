@@ -44,9 +44,6 @@ class Player(pygame.sprite.Sprite):
         self.rect.x += self.x_val
         self.collide(self.x_val, 0, platforms)
 
-    def draw(self, screen):
-        screen.blit(self.image, (self.rect.x, self.rect.y))
-
     def collide(self, x_val, y_val, platforms):
         for p in platforms:
             if pygame.sprite.collide_rect(self, p):

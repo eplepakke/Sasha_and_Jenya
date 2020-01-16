@@ -2,7 +2,8 @@ import pygame
 import os
 from level_loading import load_level
 from start_screen import start_screen
-from player import Player
+from player import *
+from platform import *
 
 WIN_WIDTH = 800
 WIN_HEIGHT = 640
@@ -10,9 +11,6 @@ BACKGROUND_COLOR = pygame.Color('blue')
 SIZE = (WIN_WIDTH, WIN_HEIGHT)
 FPS = 60
 
-PLATFORM_WIDTH = 32
-PLATFORM_HEIGHT = 32
-PLATFORM_COLOR = pygame.Color('red')
 entities = pygame.sprite.Group()
 platforms = []
 level = load_level('first.txt')
@@ -34,6 +32,17 @@ def main():
 
     bg = pygame.Surface((WIN_WIDTH, WIN_HEIGHT))
     bg.fill(BACKGROUND_COLOR)
+
+    for row in level:
+        for col in row:
+            if col == "#":
+                pf = Platform(x, y)
+                entities.add(pf)
+                platforms.append(pf)
+            x += PLATFORM_WIDTH
+        y += PLATFORM_HEIGHT
+        x = 0
+
     while True:
         for e in pygame.event.get():
             if e.type == pygame.QUIT:
@@ -57,18 +66,8 @@ def main():
 
         screen.blit(bg, (0, 0))
 
-        for row in level:
-            for col in row:
-                if col == "#":
-                    pf = pygame.Surface((PLATFORM_WIDTH, PLATFORM_HEIGHT))
-                    pf.fill(PLATFORM_COLOR)
-                    screen.blit(pf, (x, y))
-                x += PLATFORM_WIDTH
-            y += PLATFORM_HEIGHT
-            x = 0
-
-        hero.update(left, right, up)
-        hero.draw(screen)
+        hero.update(left, right, up, platforms)
+        entities.draw(screen)
 
         pygame.display.update()
         clock.tick(FPS)

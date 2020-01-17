@@ -1,5 +1,6 @@
 from pygame import *
 from level_loading import load_level
+from load_image import *
 from start_screen import start_screen
 from player import *
 from platform import *
@@ -7,7 +8,7 @@ from camera import *
 
 WIN_WIDTH = 800
 WIN_HEIGHT = 640
-BACKGROUND_COLOR = pygame.Color('blue')
+BACKGROUND = load_image('back.png')
 SIZE = (WIN_WIDTH, WIN_HEIGHT)
 FPS = 60
 
@@ -49,7 +50,7 @@ def main():
     y = 0
 
     bg = pygame.Surface((WIN_WIDTH, WIN_HEIGHT))
-    bg.fill(BACKGROUND_COLOR)
+    bg.blit(BACKGROUND, (0, 0))
 
     for row in level:
         for col in row:

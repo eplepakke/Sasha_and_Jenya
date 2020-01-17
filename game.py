@@ -2,6 +2,7 @@ from pygame import *
 from level_loading import load_level
 from start_screen import start_screen
 from player import *
+from final_exit import *
 from platform import *
 from camera import *
 
@@ -57,6 +58,10 @@ def main():
                 pf = Platform(x, y)
                 sprites.add(pf)
                 platforms.append(pf)
+            elif col == '@':
+                fin = Final(x, y)
+                sprites.add(fin)
+                platforms.append(fin)
             x += PLATFORM_WIDTH
         y += PLATFORM_HEIGHT
         x = 0
@@ -84,7 +89,9 @@ def main():
 
         screen.blit(bg, (0, 0))
 
-        hero.update(left, right, up, platforms)
+        final = hero.update(left, right, up, platforms)
+        if final:
+            break
         camera.update(hero)
         for s in sprites:
             screen.blit(s.image, camera.apply(s))

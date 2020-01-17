@@ -2,7 +2,7 @@ import os
 import pygame
 
 WIN_WIDTH = 800
-WIN_HEIGHT = 600
+WIN_HEIGHT = 640
 SIZE = (WIN_WIDTH, WIN_HEIGHT)
 pygame.init()
 screen = pygame.display.set_mode(SIZE)

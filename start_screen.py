@@ -2,9 +2,9 @@ import pygame
 from load_image import load_image
 
 WIN_WIDTH = 800
-WIN_HEIGHT = 600
+WIN_HEIGHT = 640
 SIZE = (WIN_WIDTH, WIN_HEIGHT)
-FPS = 50
+FPS = 60
 pygame.init()
 screen = pygame.display.set_mode(SIZE)
 clock = pygame.time.Clock()
@@ -16,7 +16,7 @@ def start_screen():
                   "",
                   ""]
 
-    fon = pygame.transform.scale(load_image('back.jpg'), (800, 600))
+    fon = pygame.transform.scale(load_image('start.jpg'), (WIN_WIDTH, WIN_HEIGHT))
     screen.blit(fon, (0, 0))
     font = pygame.font.Font(None, 30)
     text_coord = 50

@@ -1,10 +1,16 @@
 import pygame
+from load_image import load_image
 
-MOVE_SPEED = 7
+
+MOVE_SPEED = 5
 WIDTH = 24
 HEIGHT = 32
 COLOR = pygame.Color('green')
-JUMP_POWER = 10
+STAND_IMAGE = load_image('stand.png', -1)
+RIGHT_IMAGES = [load_image('right1.png', -1), load_image('right2.png', -1)]
+LEFT_IMAGES = [load_image('left1.png', -1), load_image('left2.png', -1)]
+JUMP_IMAGE = load_image('jump.png', -1)
+JUMP_POWER = 8
 GRAVITY = 0.35
 
 
@@ -13,26 +19,33 @@ class Player(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.x_val = 0
         self.y_val = 0
-        self.startX = x
-        self.startY = y
+        self.anim_count = 0
         self.on_ground = False
-        self.image = pygame.Surface((WIDTH, HEIGHT))
-        self.image.fill(COLOR)
+        self.image = STAND_IMAGE
         self.rect = pygame.Rect(x, y, WIDTH, HEIGHT)
 
     def update(self, left, right, up, platforms):
+        if self.anim_count + 1 >= 60:
+            self.anim_count = 0
+
         if left:
             self.x_val = -MOVE_SPEED
+            self.image = LEFT_IMAGES[self.anim_count // 30]
+            self.anim_count += 1
 
-        if right:
+        elif right:
             self.x_val = MOVE_SPEED
+            self.image = RIGHT_IMAGES[self.anim_count // 30]
+            self.anim_count += 1
 
-        if not (left or right):
+        elif not (left or right):
             self.x_val = 0
+            self.image = STAND_IMAGE
 
         if up:
             if self.on_ground:
                 self.y_val = -JUMP_POWER
+            self.image = JUMP_IMAGE
 
         if not self.on_ground:
             self.y_val += GRAVITY

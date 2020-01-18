@@ -11,14 +11,21 @@ clock = pygame.time.Clock()
 
 
 def start_screen():
-    intro_text = ["", "",
+    intro_text = ["САША и ЖЕНЯ:", "фантастические приключения",
                   "",
+                  "Управление: стрелочки для движения",
                   "",
-                  ""]
+                  "Предистория: вы рыцарь и обычный",
+                  "овало-человек по имени Женя",
+                  "Ваша цель - спасти важного члена",
+                  "правительства и вашего друга Сашу",
+                  "из лап мошенников и заговорщиков.",
+                  "Найдите клетку с Сашей и разбейте её!",
+                  "Скорее, герой, овало-люди в опасности!!!"]
 
-    fon = pygame.transform.scale(load_image('start.jpg'), (WIN_WIDTH, WIN_HEIGHT))
+    fon = pygame.transform.scale(load_image('start.png'), (WIN_WIDTH, WIN_HEIGHT))
     screen.blit(fon, (0, 0))
-    font = pygame.font.Font(None, 30)
+    font = pygame.font.Font(None, 50)
     text_coord = 50
     for line in intro_text:
         string_rendered = font.render(line, 1, pygame.Color('black'))
@@ -33,7 +40,8 @@ def start_screen():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
+                return False
             elif event.type == pygame.KEYDOWN or event.type == pygame.MOUSEBUTTONDOWN:
-                return
+                return True
         pygame.display.flip()
         clock.tick(FPS)

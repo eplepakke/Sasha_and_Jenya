@@ -5,7 +5,6 @@ from final_exit import Final
 MOVE_SPEED = 6
 WIDTH = 24
 HEIGHT = 32
-COLOR = pygame.Color('green')
 STAND_IMAGE = load_image('stand.png', -1)
 RIGHT_IMAGES = [load_image('right1.png', -1), load_image('right2.png', -1)]
 LEFT_IMAGES = [load_image('left1.png', -1), load_image('left2.png', -1)]

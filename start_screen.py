@@ -3,11 +3,14 @@ from load_image import load_image
 
 WIN_WIDTH = 800
 WIN_HEIGHT = 640
+ICON = load_image('icon.png')
 SIZE = (WIN_WIDTH, WIN_HEIGHT)
 FPS = 60
 pygame.init()
 screen = pygame.display.set_mode(SIZE)
 clock = pygame.time.Clock()
+pygame.display.set_caption("Sasha and Jenya")
+pygame.display.set_icon(ICON)
 
 
 def start_screen():
